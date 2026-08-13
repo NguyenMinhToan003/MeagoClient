@@ -32,10 +32,12 @@ export function createEntityHooks<T, TCreate = Partial<T>, TUpdate = Partial<T>>
   function useInvalidate() {
     const queryClient = useQueryClient();
     return async () => {
-      await queryClient.invalidateQueries({ queryKey: queryKeys.all });
-      for (const key of options?.crossInvalidateKeys ?? []) {
-        await queryClient.invalidateQueries({ queryKey: [key] });
-      }
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: queryKeys.all }),
+        ...(options?.crossInvalidateKeys ?? []).map((key) =>
+          queryClient.invalidateQueries({ queryKey: [key] }),
+        ),
+      ]);
     };
   }
 
