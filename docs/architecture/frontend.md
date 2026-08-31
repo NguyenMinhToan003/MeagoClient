@@ -57,7 +57,7 @@ sequenceDiagram
     participant UI as Page/Component
     participant Hook as React Query hook
     participant HTTP as Axios client
-    participant Lock as Web Lock
+    participant Lock as Web Lock + BroadcastChannel
     participant API as MeagoServer
 
     UI->>Hook: gọi use case
@@ -65,12 +65,16 @@ sequenceDiagram
     HTTP->>API: API request
     API-->>HTTP: 401 khi access token hết hạn
     HTTP->>Lock: yêu cầu refresh lock
-    Lock->>API: POST /auth/refresh + httpOnly cookie
+    Lock->>API: một tab POST /auth/refresh + httpOnly cookie
     API-->>Lock: access token mới + rotated cookie
-    Lock-->>HTTP: access token mới
+    Lock-->>HTTP: broadcast token mới cho các tab đang chờ
     HTTP->>API: retry request đúng một lần
     API-->>UI: response qua hook
 ```
+
+Web Lock chỉ tuần tự hóa callback, không tự chia sẻ kết quả. Vì vậy coordinator phải dùng cả BroadcastChannel; tab nhận kết quả không gọi thêm một rotation. Current user/permissions chỉ nằm trong React Query cache, không mirror sang Zustand. Zustand chỉ giữ access token memory và trạng thái bootstrap.
+
+Nguồn chuẩn: [MDN Web Locks API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API), [MDN Broadcast Channel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API), [TanStack Query queries](https://tanstack.com/query/latest/docs/framework/react/guides/queries).
 
 ## Vị trí đặt code mới
 

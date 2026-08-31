@@ -10,7 +10,6 @@ File này giúp đọc nhanh stack và trách nhiệm của từng công nghệ.
 | TypeScript strict | Type safety và contract checking | Adopted |
 | Tailwind CSS + shadcn/ui | Design token và UI primitive thuộc source repo | Adopted |
 | `next-intl` | Locale `/vi`, `/en`, message catalog và locale navigation | Adopted toàn ứng dụng |
-| Motion | Animation có chủ đích | Available; dùng theo feature |
 | Lucide React | Icon system | Adopted |
 | Docker standalone | Next.js self-host runtime tối giản | Adopted; production được orchestration từ MeagoServer Compose |
 

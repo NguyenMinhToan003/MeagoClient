@@ -1,12 +1,16 @@
-'use client';
+"use client";
 
-import { ReactNode, useEffect, useState } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useRouter } from '@/i18n/navigation';
-import { authService } from '@/services/auth.service';
-import { useAuthStore } from '@/stores/auth.store';
-import { AUTH_EXPIRED_EVENT } from '@/libs/axios/axios-client';
+import { ReactNode, useEffect, useState } from "react";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useRouter } from "@/i18n/navigation";
+import { authService } from "@/services/auth.service";
+import { useAuthStore } from "@/stores/auth.store";
+import { AUTH_EXPIRED_EVENT } from "@/libs/axios/axios-client";
 
 /** Khi mount (hoặc F5): thử dùng refresh cookie lấy access token mới. */
 function AuthBootstrap() {
@@ -26,11 +30,15 @@ function AuthBootstrap() {
 /** Refresh token hết hạn/bị revoke giữa chừng → về /login. */
 function AuthExpiredListener() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   useEffect(() => {
-    const handler = () => router.replace('/login');
+    const handler = () => {
+      queryClient.clear();
+      router.replace("/login");
+    };
     window.addEventListener(AUTH_EXPIRED_EVENT, handler);
     return () => window.removeEventListener(AUTH_EXPIRED_EVENT, handler);
-  }, [router]);
+  }, [queryClient, router]);
   return null;
 }
 
@@ -51,7 +59,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       <AuthBootstrap />
       <AuthExpiredListener />
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV === "development" ? (
+        <ReactQueryDevtools initialIsOpen={false} />
+      ) : null}
     </QueryClientProvider>
   );
 }

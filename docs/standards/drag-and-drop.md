@@ -48,6 +48,7 @@ const optimistic = useOptimisticReorder({
 - Pointer dùng distance; touch dùng delay+tolerance; KeyboardSensor luôn được giữ.
 - `onDragEnd` mới commit API; không gọi API trong `dragMove`.
 - Reorder lỗi phải rollback và thông báo; API nên nhận item ID cùng vị trí/neighbor ID, không nhận toàn bộ object UI.
+- Commit được serialize theo thứ tự thao tác. Failure cũ không được rollback state của operation mới hơn; `isPending` dùng để hiển thị trạng thái hoặc chặn thao tác theo policy domain.
 - Vertical/horizontal preset khóa axis; grid không khóa axis.
 - Multi-container/Kanban là preset riêng theo domain, không thêm boolean vào `SortableList`.
 - Không reorder xuyên qua các page chưa load; danh sách rất lớn phải benchmark riêng với virtualization.

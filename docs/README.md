@@ -14,11 +14,12 @@ Tài liệu được chia theo mục đích, không theo thứ tự thời gian:
 1. [Technology stack](reference/technology-stack.md)
 2. [Kiến trúc frontend](architecture/frontend.md)
 3. [Chuẩn capability frontend](standards/frontend-capabilities.md)
-4. [Drag and drop foundation](standards/drag-and-drop.md)
-5. [Infinite data foundation](standards/infinite-data.md)
+4. [Quy tắc coding frontend](standards/coding-rules.md)
+5. [Drag and drop foundation](standards/drag-and-drop.md)
+6. [Infinite data foundation](standards/infinite-data.md)
 
 Tài liệu phải mô tả code đang tồn tại. Thiết kế chưa triển khai phải ghi rõ `Deferred` hoặc `Research`.
 
-AI làm việc trong workspace phải đọc `C:\Meago\AGENTS.md` trước tài liệu repo này.
+AI phải đọc `C:\Meago\AGENTS.md`, sau đó `C:\Meago\MeagoClient\AGENTS.md` trước tài liệu repo này.
 
 Container production dùng `Dockerfile` tại root với Next.js `output: standalone`. Topology và lệnh deploy full stack là nguồn sự thật tại `MeagoServer/docs/operations/docker.md`.

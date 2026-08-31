@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
 import {
   useMutation,
   useQuery,
   useQueryClient,
   keepPreviousData,
-} from '@tanstack/react-query';
-import { IBaseQuery } from '@meago/core';
-import { ICrudApis } from '@/services/create-crud-apis';
+} from "@tanstack/react-query";
+import { IBaseQuery } from "@meago/core";
+import { ICrudApis } from "@/services/create-crud-apis";
 
 /**
  * Factory sinh bộ hooks React Query chuẩn cho một entity
@@ -18,15 +18,20 @@ import { ICrudApis } from '@/services/create-crud-apis';
  * const storyHooks = createEntityHooks(REACT_QUERY_KEY.STORIES, storyApis);
  * storyHooks.useList({ page: 1 }); storyHooks.useCreate();
  */
-export function createEntityHooks<T, TCreate = Partial<T>, TUpdate = Partial<T>>(
+export function createEntityHooks<
+  T extends { version: number },
+  TCreate = Partial<Omit<T, "id" | "version" | "createdAt" | "updatedAt">>,
+  TUpdate = Partial<Omit<T, "id" | "version" | "createdAt" | "updatedAt">> &
+    Pick<T, "version">,
+>(
   entityName: string,
   apis: ICrudApis<T, TCreate, TUpdate>,
   options?: { crossInvalidateKeys?: string[] },
 ) {
   const queryKeys = {
     all: [entityName] as const,
-    list: (queries?: IBaseQuery) => [entityName, 'list', queries] as const,
-    detail: (id: string) => [entityName, 'detail', id] as const,
+    list: (queries?: IBaseQuery) => [entityName, "list", queries] as const,
+    detail: (id: string) => [entityName, "detail", id] as const,
   };
 
   function useInvalidate() {
@@ -54,7 +59,7 @@ export function createEntityHooks<T, TCreate = Partial<T>, TUpdate = Partial<T>>
 
     useDetail: (id: string | undefined) =>
       useQuery({
-        queryKey: queryKeys.detail(id ?? ''),
+        queryKey: queryKeys.detail(id ?? ""),
         queryFn: () => apis.findOneById(id as string),
         enabled: !!id,
       }),
@@ -71,7 +76,10 @@ export function createEntityHooks<T, TCreate = Partial<T>, TUpdate = Partial<T>>
 
     useRemoveMulti: () => {
       const invalidate = useInvalidate();
-      return useMutation({ mutationFn: apis.removeMulti, onSettled: invalidate });
+      return useMutation({
+        mutationFn: apis.removeMulti,
+        onSettled: invalidate,
+      });
     },
   };
 }

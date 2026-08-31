@@ -1,13 +1,28 @@
-import { apiGet, apiPost, apiPatch, apiDelete } from '@/libs/axios/axios-client';
-import { IBaseQuery, IPaginatedResult } from '@meago/core';
+import {
+  apiGet,
+  apiPost,
+  apiPatch,
+  apiDelete,
+} from "@/libs/axios/axios-client";
+import { IBaseQuery, IPaginatedResult } from "@meago/core";
 
 /**
  * Factory sinh bộ API CRUD chuẩn cho một resource, khớp BaseService phía server.
  * const storyApis = createCrudApis<IStory>('stories');
  */
-export function createCrudApis<T, TCreate = Partial<T>, TUpdate = Partial<T>>(resource: string) {
+export type VersionedUpdate<T extends { version: number }> = Partial<
+  Omit<T, "id" | "version" | "createdAt" | "updatedAt">
+> &
+  Pick<T, "version">;
+
+export function createCrudApis<
+  T extends { version: number },
+  TCreate = Partial<Omit<T, "id" | "version" | "createdAt" | "updatedAt">>,
+  TUpdate = VersionedUpdate<T>,
+>(resource: string) {
   return {
-    findMulti: (queries?: IBaseQuery) => apiGet<IPaginatedResult<T>>(resource, queries),
+    findMulti: (queries?: IBaseQuery) =>
+      apiGet<IPaginatedResult<T>>(resource, queries),
     findOneById: (id: string) => apiGet<T>(`${resource}/${id}`),
     create: (body: TCreate) => apiPost<T>(resource, body as object),
     update: ({ id, body }: { id: string; body: TUpdate }) =>
@@ -16,6 +31,8 @@ export function createCrudApis<T, TCreate = Partial<T>, TUpdate = Partial<T>>(re
   };
 }
 
-export type ICrudApis<T, TCreate = Partial<T>, TUpdate = Partial<T>> = ReturnType<
-  typeof createCrudApis<T, TCreate, TUpdate>
->;
+export type ICrudApis<
+  T extends { version: number },
+  TCreate = Partial<Omit<T, "id" | "version" | "createdAt" | "updatedAt">>,
+  TUpdate = VersionedUpdate<T>,
+> = ReturnType<typeof createCrudApis<T, TCreate, TUpdate>>;
