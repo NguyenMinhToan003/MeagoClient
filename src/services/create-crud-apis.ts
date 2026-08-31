@@ -1,5 +1,5 @@
 import { apiGet, apiPost, apiPatch, apiDelete } from '@/libs/axios/axios-client';
-import { IBaseQuery, IPaginatedResult } from '@/interfaces/common/response.interface';
+import { IBaseQuery, IPaginatedResult } from '@meago/core';
 
 /**
  * Factory sinh bộ API CRUD chuẩn cho một resource, khớp BaseService phía server.

@@ -1,12 +1,7 @@
 import { create } from 'zustand';
+import { ICurrentUser } from '@meago/core';
 
-export interface ICurrentUser {
-  id: string;
-  email: string;
-  displayName: string;
-  status: string;
-  permissions: string[];
-}
+export type { ICurrentUser } from '@meago/core';
 
 interface IAuthState {
   /**

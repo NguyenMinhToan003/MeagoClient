@@ -1,7 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '@/stores/auth.store';
-import { API_VERSION, API_CONTROLLERS, API_ACTIONS } from '@/constants/apis.constant';
-import { IBaseResponse } from '@/interfaces/common/response.interface';
+import { API_VERSION, API_CONTROLLERS, API_ACTIONS, IBaseResponse } from '@meago/core';
 
 /**
  * Axios instance duy nhất của app.
@@ -30,7 +29,7 @@ axiosClient.interceptors.request.use((config) => {
 let refreshPromise: Promise<string> | null = null;
 
 /** Gọi refresh bằng axios "trần" — không interceptor, tránh đệ quy 401. */
-async function refreshAccessToken(): Promise<string> {
+async function performRefresh(): Promise<string> {
   const res = await axios.post<IBaseResponse<{ accessToken: string }>>(
     `${API_VERSION}/${API_CONTROLLERS.AUTH}/${API_ACTIONS.REFRESH}`,
     {},
@@ -41,21 +40,29 @@ async function refreshAccessToken(): Promise<string> {
   return accessToken;
 }
 
+/** Serialize refresh across browser tabs/windows without persisting access tokens. */
+export async function renewAccessToken(): Promise<string> {
+  if (typeof navigator === 'undefined' || !navigator.locks) return performRefresh();
+  return navigator.locks.request(AUTH_EXPIRED_EVENT + ':refresh-lock', performRefresh);
+}
+
 axiosClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const original = error.config as InternalAxiosRequestConfig & { _retried?: boolean };
-    const isAuthUrl = original?.url?.includes(`${API_CONTROLLERS.AUTH}/`);
+    const isNonRefreshableAuthUrl = [API_ACTIONS.LOGIN, API_ACTIONS.REFRESH].some((action) =>
+      original?.url?.includes(`${API_CONTROLLERS.AUTH}/${action}`),
+    );
 
     // chỉ auto-refresh cho 401 của request thường, không retry lặp,
     // và không đụng vào login/refresh (login sai mật khẩu cũng 401)
-    if (error.response?.status !== 401 || original?._retried || isAuthUrl) {
+    if (error.response?.status !== 401 || original?._retried || isNonRefreshableAuthUrl) {
       return Promise.reject(error);
     }
 
     original._retried = true;
     try {
-      refreshPromise ??= refreshAccessToken().finally(() => {
+      refreshPromise ??= renewAccessToken().finally(() => {
         refreshPromise = null;
       });
       const newToken = await refreshPromise;

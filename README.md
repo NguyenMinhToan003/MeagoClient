@@ -2,7 +2,10 @@
 
 Frontend Meago — Next.js 14 (App Router) + React Query 5 + Zustand + axios + TailwindCSS.
 
-📖 Core, cơ chế token cải tiến và convention gọi API: [docs/00-overview.md](docs/00-overview.md)
+📖 Tài liệu:
+
+- [Foundation và convention](docs/00-overview.md)
+- [Sơ đồ cấu trúc FE](docs/01-system-structure.md) · [Nguồn draw.io](docs/diagrams/frontend-architecture.drawio)
 
 ## Quick start
 

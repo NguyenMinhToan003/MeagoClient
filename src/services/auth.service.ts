@@ -1,6 +1,5 @@
-import { apiGet, apiPost } from '@/libs/axios/axios-client';
-import { API_CONTROLLERS, API_ACTIONS } from '@/constants/apis.constant';
-import { ICurrentUser } from '@/stores/auth.store';
+import { apiGet, apiPost, renewAccessToken } from '@/libs/axios/axios-client';
+import { API_CONTROLLERS, API_ACTIONS, ICurrentUser } from '@meago/core';
 
 const BASE = API_CONTROLLERS.AUTH;
 
@@ -23,7 +22,7 @@ export const authService = {
       payload,
     ),
 
-  refresh: () => apiPost<{ accessToken: string }>(`${BASE}/${API_ACTIONS.REFRESH}`),
+  refresh: () => renewAccessToken().then((accessToken) => ({ accessToken })),
 
   logout: () => apiPost<{ success: boolean }>(`${BASE}/${API_ACTIONS.LOGOUT}`),
 

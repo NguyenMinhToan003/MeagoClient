@@ -6,7 +6,7 @@ import {
   useQueryClient,
   keepPreviousData,
 } from '@tanstack/react-query';
-import { IBaseQuery } from '@/interfaces/common/response.interface';
+import { IBaseQuery } from '@meago/core';
 import { ICrudApis } from '@/services/create-crud-apis';
 
 /**
