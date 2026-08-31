@@ -1,0 +1,19 @@
+{
+  "Navigation": { "home": "Home", "language": "Language", "commands": "Quick commands", "searchCommands": "Search commands or pages...", "noCommand": "No matching command found" },
+  "Home": {
+    "badge": "Meago foundation", "title": "A clean UI foundation organized by domain", "description": "The frontend architecture is ready for forms, data tables, drag and drop, large lists and product tours.", "openCommands": "Open Command Palette",
+    "foundations": {
+      "audio": { "title": "Audio experience", "description": "A foundation for audio content and serialized stories." },
+      "ui": { "title": "Reusable UI", "description": "Primitives, compositions and features have explicit boundaries." },
+      "security": { "title": "Secure authentication", "description": "Access tokens stay in memory and refresh credentials stay in an httpOnly cookie." }
+    },
+    "form": { "title": "Validated form foundation", "description": "React Hook Form owns interaction state and Zod validates the client boundary.", "email": "Email", "invalidEmail": "Enter a valid email address", "validate": "Validate" },
+    "dnd": {
+      "title": "Accessible ordering foundation",
+      "description": "Reorder with the drag handle, or focus it and use Space/Enter plus the arrow keys.",
+      "move": "Move {item}",
+      "moved": "Moved {item} to position {position}",
+      "items": { "upload": "Upload", "process": "Process", "publish": "Publish" }
+    }
+  }
+}

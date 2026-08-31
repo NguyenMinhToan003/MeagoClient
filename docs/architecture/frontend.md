@@ -2,7 +2,9 @@
 
 Tài liệu này mô tả cấu trúc đang tồn tại trong code. Khi thêm module hoặc thay đổi luồng phụ thuộc, phải cập nhật file này trong cùng pull request.
 
-> Bản trình bày trực quan có thể chỉnh sửa bằng diagrams.net: [frontend-architecture.drawio](diagrams/frontend-architecture.drawio).
+> Bản trình bày trực quan có thể chỉnh sửa bằng diagrams.net: [frontend-architecture.drawio](../diagrams/frontend-architecture.drawio).
+
+Quy ước sơ đồ: mũi tên liền là dependency/runtime call đang tồn tại; đường tới `@meago/core` là shared-contract dependency, không phải HTTP call. Luồng HTTP duy nhất đi từ transport tới MeagoServer. Khi thêm layer hoặc đổi hướng phụ thuộc, phải cập nhật cả file này và source draw.io.
 
 ## Bản đồ thư mục
 
@@ -11,7 +13,7 @@ src/
 ├─ app/                  # Next.js App Router, layout và page
 ├─ components/
 │  ├─ ui/               # shadcn primitives; code thuộc repository
-│  ├─ shared/           # Composition UI dùng chung nhiều feature
+│  ├─ shared/           # Composition dùng chung: DataTable, VirtualList, command palette
 │  └─ guards/           # AuthGuard, PermissionGuard
 ├─ constants/           # Query-key registry và constant riêng của UI
 ├─ hooks/               # React Query hooks, auth/permission hooks
@@ -19,6 +21,10 @@ src/
 ├─ interfaces/          # Contract chỉ thuộc UI; contract dùng chung lấy từ @meago/core
 ├─ libs/
 │  └─ axios/            # HTTP client, interceptor và refresh coordinator
+├─ lib/
+│  ├─ dnd/              # DnD policy, sortable composition, preset và rollback
+│  └─ onboarding/       # Driver.js factory; tour riêng đặt trong feature
+├─ i18n/                # Locale routing, navigation và request config
 ├─ providers/           # QueryClient, auth bootstrap, auth-expired listener
 ├─ services/            # API theo use case/domain; không chứa UI state
 └─ stores/              # Zustand client state; access token chỉ nằm trong memory
@@ -101,3 +107,5 @@ Nếu contract được cả FE và BE sử dụng, thêm vào MeagoLibrary và 
 - Token màu và radius nằm trong `src/app/globals.css`; feature không hard-code một theme riêng.
 
 Primitive foundation hiện có: `Button`, `Input`, `Label`, `Card`, `Badge`, `Separator` và `Skeleton`. Trang chủ compose chúng qua `features/home`; đây là showcase kiến trúc, không phải màn hình nghiệp vụ cuối cùng.
+
+Quyết định, trạng thái và cách dùng thư viện frontend được công bố tại [frontend-capabilities.md](../standards/frontend-capabilities.md).

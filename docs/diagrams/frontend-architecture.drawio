@@ -2,25 +2,66 @@
   <diagram id="meago-fe" name="MeagoClient Architecture">
     <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="title" value="MEAGO CLIENT · FRONTEND ARCHITECTURE" style="text;html=1;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#172554;" vertex="1" parent="1"><mxGeometry x="60" y="30" width="700" height="50" as="geometry" /></mxCell>
-        <mxCell id="subtitle" value="Next.js App Router · React Query · Zustand · shadcn/ui · @meago/core" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontColor=#64748B;" vertex="1" parent="1"><mxGeometry x="60" y="75" width="700" height="30" as="geometry" /></mxCell>
-        <mxCell id="presentation" value="&lt;b&gt;PRESENTATION&lt;/b&gt;&lt;br&gt;&lt;br&gt;app/pages&lt;br&gt;feature components&lt;br&gt;shared compositions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#1E3A8A;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="160" width="230" height="180" as="geometry" /></mxCell>
-        <mxCell id="ui" value="&lt;b&gt;UI PRIMITIVES&lt;/b&gt;&lt;br&gt;&lt;br&gt;components/ui&lt;br&gt;shadcn source&lt;br&gt;design tokens" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;fontColor=#4C1D95;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="410" width="230" height="170" as="geometry" /></mxCell>
-        <mxCell id="state" value="&lt;b&gt;STATE / USE CASE&lt;/b&gt;&lt;br&gt;&lt;br&gt;domain hooks&lt;br&gt;React Query&lt;br&gt;Zustand memory store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#14532D;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="390" y="160" width="230" height="180" as="geometry" /></mxCell>
-        <mxCell id="service" value="&lt;b&gt;DOMAIN SERVICES&lt;/b&gt;&lt;br&gt;&lt;br&gt;auth.service&lt;br&gt;CRUD API factories&lt;br&gt;no UI state" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#78350F;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="720" y="160" width="230" height="180" as="geometry" /></mxCell>
-        <mxCell id="transport" value="&lt;b&gt;HTTP / AUTH TRANSPORT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Axios interceptor&lt;br&gt;single-flight&lt;br&gt;Web Locks refresh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontColor=#7C2D12;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1050" y="160" width="250" height="180" as="geometry" /></mxCell>
-        <mxCell id="core" value="&lt;b&gt;@meago/core&lt;/b&gt;&lt;br&gt;&lt;br&gt;API paths&lt;br&gt;DTO + response contracts&lt;br&gt;AuthPrincipal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#475569;fontColor=#0F172A;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="720" y="410" width="230" height="170" as="geometry" /></mxCell>
-        <mxCell id="server" value="&lt;b&gt;MEAGO SERVER&lt;/b&gt;&lt;br&gt;&lt;br&gt;/api/v1&lt;br&gt;httpOnly refresh cookie&lt;br&gt;standard envelope" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;fontColor=#831843;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="1050" y="410" width="250" height="170" as="geometry" /></mxCell>
-        <mxCell id="note" value="Dependency đi một chiều. UI không gọi Axios trực tiếp. Shared contract không được định nghĩa lại trong FE." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#334155;fontSize=14;spacing=12;dashed=1;" vertex="1" parent="1"><mxGeometry x="390" y="660" width="560" height="70" as="geometry" /></mxCell>
-        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="presentation" target="state"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="presentation" target="ui"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="state" target="service"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="service" target="transport"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="service" target="core"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;" edge="1" parent="1" source="transport" target="core"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#DB2777;endArrow=block;endFill=1;" edge="1" parent="1" source="transport" target="server"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="MEAGO CLIENT · FRONTEND ARCHITECTURE" style="text;html=1;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#172554;" vertex="1" parent="1">
+          <mxGeometry x="50" y="30" width="760" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Next.js App Router · React Query · Zustand · shadcn/ui · @meago/core" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="50" y="75" width="760" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="presentation" value="&lt;b&gt;PRESENTATION&lt;/b&gt;&lt;br&gt;&lt;br&gt;app/[locale]&lt;br&gt;feature components&lt;br&gt;shared compositions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#1E3A8A;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="170" width="210" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="state" value="&lt;b&gt;STATE / USE CASE&lt;/b&gt;&lt;br&gt;&lt;br&gt;domain hooks&lt;br&gt;React Query&lt;br&gt;Zustand memory store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#14532D;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="170" width="210" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="service" value="&lt;b&gt;DOMAIN SERVICES&lt;/b&gt;&lt;br&gt;&lt;br&gt;auth.service&lt;br&gt;CRUD API factories&lt;br&gt;no UI state" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#78350F;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="170" width="210" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="transport" value="&lt;b&gt;HTTP / AUTH TRANSPORT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Axios interceptor&lt;br&gt;single-flight refresh&lt;br&gt;Web Locks coordination" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontColor=#7C2D12;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="890" y="170" width="230" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="server" value="&lt;b&gt;MEAGO SERVER&lt;/b&gt;&lt;br&gt;&lt;br&gt;/api/v1&lt;br&gt;httpOnly refresh cookie&lt;br&gt;standard envelope" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;fontColor=#831843;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="170" width="230" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui" value="&lt;b&gt;UI PRIMITIVES&lt;/b&gt;&lt;br&gt;&lt;br&gt;components/ui&lt;br&gt;shadcn source&lt;br&gt;design tokens" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;fontColor=#4C1D95;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="450" width="210" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="core" value="&lt;b&gt;@meago/core&lt;/b&gt;&lt;br&gt;&lt;br&gt;API paths&lt;br&gt;DTO + response contracts&lt;br&gt;AuthPrincipal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#475569;fontColor=#0F172A;fontSize=15;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="745" y="450" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="Dependency đi một chiều. UI không gọi Axios trực tiếp. @meago/core là contract dependency, không phải một HTTP hop." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#334155;fontSize=14;spacing=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="690" width="640" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="presentation" target="state">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="state" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#64748B;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="service" target="transport">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#DB2777;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="transport" target="server">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#7C3AED;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="presentation" target="ui">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#475569;dashed=1;endArrow=block;endFill=1;exitX=0.65;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="service" target="core">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="747" y="390"/><mxPoint x="808" y="390"/></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#475569;dashed=1;endArrow=block;endFill=1;exitX=0.35;exitY=1;entryX=0.8;entryY=0;" edge="1" parent="1" source="transport" target="core">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="971" y="390"/><mxPoint x="945" y="390"/></Array>
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

@@ -1,11 +1,8 @@
 # MeagoClient
 
-Frontend Meago — Next.js 14 (App Router) + React Query 5 + Zustand + axios + TailwindCSS.
+Frontend Meago — Next.js App Router + React + TypeScript + Tailwind CSS.
 
-📖 Tài liệu:
-
-- [Foundation và convention](docs/00-overview.md)
-- [Sơ đồ cấu trúc FE](docs/01-system-structure.md) · [Nguồn draw.io](docs/diagrams/frontend-architecture.drawio)
+📖 [Mục lục tài liệu](docs/README.md) · [Technology stack](docs/reference/technology-stack.md) · [Kiến trúc frontend](docs/architecture/frontend.md) · [Nguồn draw.io](docs/diagrams/frontend-architecture.drawio)
 
 ## Quick start
 

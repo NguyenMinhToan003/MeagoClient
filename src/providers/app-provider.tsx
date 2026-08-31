@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/stores/auth.store';
 import { AUTH_EXPIRED_EVENT } from '@/libs/axios/axios-client';

@@ -1,0 +1,19 @@
+{
+  "Navigation": { "home": "Trang chủ", "language": "Ngôn ngữ", "commands": "Lệnh nhanh", "searchCommands": "Tìm lệnh hoặc trang...", "noCommand": "Không tìm thấy lệnh phù hợp" },
+  "Home": {
+    "badge": "Nền tảng Meago", "title": "Nền UI sạch để phát triển theo domain", "description": "Kiến trúc frontend đã sẵn sàng cho form, bảng dữ liệu, kéo thả, danh sách lớn và hướng dẫn người dùng.", "openCommands": "Mở Command Palette",
+    "foundations": {
+      "audio": { "title": "Trải nghiệm audio", "description": "Nền tảng cho nội dung audio và truyện dài tập." },
+      "ui": { "title": "UI tái sử dụng", "description": "Primitive, composition và feature có ranh giới phụ thuộc rõ ràng." },
+      "security": { "title": "Xác thực an toàn", "description": "Access token nằm trong memory và refresh credential nằm trong cookie httpOnly." }
+    },
+    "form": { "title": "Nền tảng form có validation", "description": "React Hook Form quản lý trạng thái tương tác và Zod kiểm tra boundary phía client.", "email": "Email", "invalidEmail": "Hãy nhập địa chỉ email hợp lệ", "validate": "Kiểm tra" },
+    "dnd": {
+      "title": "Nền tảng sắp xếp có accessibility",
+      "description": "Kéo bằng tay cầm, hoặc focus tay cầm rồi dùng Space/Enter và các phím mũi tên.",
+      "move": "Di chuyển {item}",
+      "moved": "Đã chuyển {item} đến vị trí {position}",
+      "items": { "upload": "Tải lên", "process": "Xử lý", "publish": "Xuất bản" }
+    }
+  }
+}
