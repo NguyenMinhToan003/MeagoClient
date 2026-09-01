@@ -1,19 +1,159 @@
 {
+  "SidebarNavigation": {
+    "label": "Primary navigation",
+    "description": "Open the Meago navigation menu",
+    "topSearch": "Search or run a command...",
+    "commandShortcut": "Search shortcut: Ctrl K",
+    "toggleTheme": "Toggle light or dark mode",
+    "account": "User account",
+    "loadingUser": "Loading user information",
+    "guest": "Guest",
+    "signedIn": "Signed in",
+    "notSignedIn": "Not signed in",
+    "logout": "Sign out",
+    "open": "Open menu",
+    "collapse": "Collapse navigation",
+    "expand": "Expand navigation",
+    "overview": "Overview",
+    "capabilities": "UI capabilities",
+    "data": "Tables and lists",
+    "infinite": "Infinite scrolling",
+    "feedback": "UI feedback",
+    "board": "Drag-and-drop board",
+    "forms": "Forms and commands"
+  },
   "Navigation": { "home": "Home", "language": "Language", "commands": "Quick commands", "searchCommands": "Search commands or pages...", "noCommand": "No matching command found" },
   "Home": {
-    "badge": "Meago foundation", "title": "A clean UI foundation organized by domain", "description": "The frontend architecture is ready for forms, data tables, drag and drop, large lists and product tours.", "openCommands": "Open Command Palette",
+    "badge": "Meago foundation", "title": "A clean UI foundation organized by domain", "description": "The frontend architecture is ready for forms, data tables, drag and drop, large lists and product tours.", "openCommands": "Open Command Palette", "startTour": "Start product tour",
     "foundations": {
       "audio": { "title": "Audio experience", "description": "A foundation for audio content and serialized stories." },
       "ui": { "title": "Reusable UI", "description": "Primitives, compositions and features have explicit boundaries." },
       "security": { "title": "Secure authentication", "description": "Access tokens stay in memory and refresh credentials stay in an httpOnly cookie." }
     },
     "form": { "title": "Validated form foundation", "description": "React Hook Form owns interaction state and Zod validates the client boundary.", "email": "Email", "invalidEmail": "Enter a valid email address", "validate": "Validate" },
-    "dnd": {
-      "title": "Accessible ordering foundation",
-      "description": "Reorder with the drag handle, or focus it and use Space/Enter plus the arrow keys.",
+    "buttons": {
+      "title": "Meago button system",
+      "description": "Every variant, size, and state for visual theme review.",
+      "variants": "Variants",
+      "sizes": "Sizes",
+      "states": "States",
+      "default": "Default",
+      "solid": "Solid",
+      "outlinePrimary": "Outline primary",
+      "secondary": "Secondary",
+      "outline": "Outline",
+      "ghost": "Ghost",
+      "destructive": "Destructive",
+      "link": "Link",
+      "settings": "Settings",
+      "disabled": "Disabled",
+      "loading": "Loading",
+      "solidDisabled": "Solid disabled",
+      "outlineDisabled": "Outline disabled"
+    },
+    "avatars": {
+      "title": "Generated avatar palette",
+      "description": "Initials and colors are generated deterministically from each display name. The same name always produces the same avatar."
+    },
+    "controls": {
+      "title": "Input and pagination system",
+      "description": "Core text, numeric, date/time, multiline, and paginated navigation controls.",
+      "text": { "label": "Text", "placeholder": "Enter a title" },
+      "number": { "label": "Number" },
+      "password": { "label": "Password", "placeholder": "Enter a secure password" },
+      "search": { "label": "Search", "placeholder": "Search content", "action": "Search" },
+      "select": {
+        "single": "Single select with search",
+        "multiple": "Multiple select",
+        "placeholder": "Select a status",
+        "options": { "draft": "Draft", "review": "In review", "published": "Published", "archived": "Archived" }
+      },
+      "textarea": { "label": "Textarea", "placeholder": "Enter a longer description" },
+      "date": { "label": "Date" },
+      "time": { "label": "Time" },
+      "dateTime": {
+        "label": "Local date and time",
+        "hint": "datetime-local has no timezone. Convert it to the agreed UTC/ISO representation at the application boundary before sending it to the API."
+      },
+      "dateRange": { "label": "Date range" },
+      "dateTimeRange": {
+        "label": "Date and time range",
+        "hint": "The range keeps structured calendar values until the application boundary converts them for the API."
+      },
+      "timeRange": {
+        "label": "Time range",
+        "hint": "AntD keeps the range ordered and confirms it through the picker panel."
+      },
+      "picker": {
+        "today": "Today",
+        "nextSevenDays": "Next 7 days",
+        "thisMonth": "This month"
+      },
+      "pagination": {
+        "title": "Pagination",
+        "current": "Current page: {page}",
+        "navigation": "Pagination navigation",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Go to page {page}",
+        "more": "More pages"
+      }
+    },
+    "dataDemo": {
+      "title": "Data and large-list foundation",
+      "description": "TanStack Table renders typed data; TanStack Virtual only renders visible rows.",
+      "statuses": { "draft": "Draft", "review": "In review", "published": "Published" },
+      "table": {
+        "title": "Data table",
+        "description": "The feature owns columns and stable row IDs.",
+        "empty": "No data",
+        "columns": { "title": "Story", "status": "Status", "chapters": "Chapters" }
+      },
+      "virtual": {
+        "title": "Virtualized list with 120 rows",
+        "description": "Scroll to inspect DOM virtualization.",
+        "item": "Activity number {position}"
+      },
+      "infinite": {
+        "title": "Cursor infinite loading",
+        "description": "Intersection Observer loads the next page; the button remains an operable fallback.",
+        "item": "Content item number {position}",
+        "loading": "Loading the next page...",
+        "loadMore": "Load more",
+        "complete": "All demo data loaded"
+      }
+    },
+    "feedback": {
+      "title": "Skeleton and toast feedback",
+      "description": "Skeletons preserve layout while loading; Sonner reports short-lived outcomes and promise state.",
+      "toast": {
+        "title": "Global toast",
+        "success": "The operation completed successfully",
+        "info": "This is an informational notification",
+        "error": "The demo operation could not be completed",
+        "successAction": "Success",
+        "infoAction": "Info",
+        "errorAction": "Error"
+      },
+      "promise": { "action": "Promise toast", "loading": "Processing...", "result": "Promise completed successfully", "error": "Promise failed" },
+      "skeleton": { "title": "Skeleton preserves the content shape" }
+    },
+    "board": {
+      "title": "Four-column sortable board",
+      "description": "Reorder within a column or move items across columns with pointer, touch, or keyboard.",
       "move": "Move {item}",
-      "moved": "Moved {item} to position {position}",
-      "items": { "upload": "Upload", "process": "Process", "publish": "Publish" }
+      "moved": "Moved {item} to {column}, position {position}",
+      "columns": { "backlog": "Ideas", "ready": "Ready", "doing": "In progress", "done": "Done" },
+      "items": { "outline": "Write outline", "cover": "Design cover", "record": "Record chapter", "review": "Review content", "publish": "Publish episode" },
+      "density": { "compact": "Switch to compact view", "comfortable": "Switch to comfortable view" }
+    },
+    "tour": {
+      "locale": { "title": "Switch language", "description": "Locale routing preserves the current page while switching Vietnamese and English." },
+      "form": { "title": "Form and commands", "description": "Inspect validation, the server-error boundary, and the Command Palette." },
+      "data": { "title": "Table and virtualization", "description": "These capabilities have separate responsibilities: table modeling and DOM-node optimization." },
+      "feedback": { "title": "Skeleton and toast", "description": "Inspect loading placeholders and global success/info/error/promise notifications." },
+      "infinite": { "title": "Infinite loading", "description": "Cursor queries work with Intersection Observer without large offsets." },
+      "board": { "title": "Multi-column DnD", "description": "Same-column, cross-column, touch, and keyboard interactions share one foundation." }
     }
   }
 }

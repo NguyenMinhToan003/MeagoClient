@@ -18,6 +18,7 @@ export function LocaleSwitcher() {
       type="button"
       variant="outline"
       size="sm"
+      className="h-9"
       aria-label={t('language')}
       onClick={() => router.replace(pathname, { locale: nextLocale })}
     >

@@ -9,7 +9,9 @@ File này giúp đọc nhanh stack và trách nhiệm của từng công nghệ.
 | Next.js App Router + React | Routing, SSR/RSC và UI runtime | Adopted |
 | TypeScript strict | Type safety và contract checking | Adopted |
 | Tailwind CSS + shadcn/ui | Design token và UI primitive thuộc source repo | Adopted |
+| Meago technology teal | Brand seed `#14B8A6` đi cùng white surface; dark accent `#2DD4BF`, dark solid primary `#0F766E` để giảm chói và giữ contrast | Adopted |
 | `next-intl` | Locale `/vi`, `/en`, message catalog và locale navigation | Adopted toàn ứng dụng |
+| `next-themes` | Đồng bộ light/dark/system theme bằng class trên document root | Adopted toàn ứng dụng |
 | Lucide React | Icon system | Adopted |
 | Docker standalone | Next.js self-host runtime tối giản | Adopted; production được orchestration từ MeagoServer Compose |
 
@@ -27,6 +29,7 @@ File này giúp đọc nhanh stack và trách nhiệm của từng công nghệ.
 | Công nghệ | Vai trò | Trạng thái |
 |---|---|---|
 | React Hook Form + Zod | Form state và client-boundary validation | Adopted |
+| Ant Design Input/DatePicker/TimePicker + Day.js | Input tiện ích, Date, Time, DateTime, Range, time panel, presets và confirm flow; chỉ dùng qua Meago boundary và theme bằng ConfigProvider | Adopted cho form-control subsystem |
 | TanStack Table v9 | Headless table model | Foundation sẵn sàng |
 | TanStack Query Infinite | Cursor pagination cho feed/list tải tiếp | Foundation sẵn sàng |
 | TanStack Virtual | Virtualize dữ liệu đã tải | Dùng sau khi đo hiệu năng |
@@ -34,6 +37,8 @@ File này giúp đọc nhanh stack và trách nhiệm của từng công nghệ.
 | react-intersection-observer | Infinite sentinel/lazy activation | Foundation sẵn sàng |
 | Driver.js | Product tour | Foundation sẵn sàng |
 | dnd-kit API mới | Accessible reorder với preset/sensor/rollback | Foundation + demo đã triển khai |
+| Motion | Animated icon toggle và interaction feedback | Adopted qua `AnimatedIconToggle`; tôn trọng reduced motion |
+| Sonner | Toast success/info/error/promise toàn cục | Adopted; một `Toaster` duy nhất tại AppProvider |
 | Uppy/Tus | Resumable upload | Deferred; chưa cài |
 
 Chi tiết triển khai: [frontend-capabilities.md](../standards/frontend-capabilities.md).

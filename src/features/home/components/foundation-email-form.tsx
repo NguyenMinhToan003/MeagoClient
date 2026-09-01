@@ -34,7 +34,7 @@ export function FoundationEmailForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" variant="outline">{t('validate')}</Button>
+        <Button type="submit" variant="outline-primary">{t('validate')}</Button>
       </form>
     </Form>
   );

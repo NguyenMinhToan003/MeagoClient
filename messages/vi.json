@@ -1,19 +1,159 @@
 {
+  "SidebarNavigation": {
+    "label": "Điều hướng chính",
+    "description": "Mở menu điều hướng Meago",
+    "topSearch": "Tìm kiếm hoặc chạy lệnh...",
+    "commandShortcut": "Phím tắt mở tìm kiếm: Ctrl K",
+    "toggleTheme": "Chuyển chế độ sáng hoặc tối",
+    "account": "Tài khoản người dùng",
+    "loadingUser": "Đang tải thông tin người dùng",
+    "guest": "Khách",
+    "signedIn": "Đã đăng nhập",
+    "notSignedIn": "Chưa đăng nhập",
+    "logout": "Đăng xuất",
+    "open": "Mở menu",
+    "collapse": "Thu gọn thanh điều hướng",
+    "expand": "Mở rộng thanh điều hướng",
+    "overview": "Tổng quan",
+    "capabilities": "Thành phần giao diện",
+    "data": "Bảng và danh sách",
+    "infinite": "Cuộn vô hạn",
+    "feedback": "Phản hồi giao diện",
+    "board": "Bảng kéo thả",
+    "forms": "Biểu mẫu và lệnh"
+  },
   "Navigation": { "home": "Trang chủ", "language": "Ngôn ngữ", "commands": "Lệnh nhanh", "searchCommands": "Tìm lệnh hoặc trang...", "noCommand": "Không tìm thấy lệnh phù hợp" },
   "Home": {
-    "badge": "Nền tảng Meago", "title": "Nền UI sạch để phát triển theo domain", "description": "Kiến trúc frontend đã sẵn sàng cho form, bảng dữ liệu, kéo thả, danh sách lớn và hướng dẫn người dùng.", "openCommands": "Mở Command Palette",
+    "badge": "Nền tảng Meago", "title": "Nền UI sạch để phát triển theo domain", "description": "Kiến trúc frontend đã sẵn sàng cho form, bảng dữ liệu, kéo thả, danh sách lớn và hướng dẫn người dùng.", "openCommands": "Mở Command Palette", "startTour": "Bắt đầu hướng dẫn",
     "foundations": {
       "audio": { "title": "Trải nghiệm audio", "description": "Nền tảng cho nội dung audio và truyện dài tập." },
       "ui": { "title": "UI tái sử dụng", "description": "Primitive, composition và feature có ranh giới phụ thuộc rõ ràng." },
       "security": { "title": "Xác thực an toàn", "description": "Access token nằm trong memory và refresh credential nằm trong cookie httpOnly." }
     },
     "form": { "title": "Nền tảng form có validation", "description": "React Hook Form quản lý trạng thái tương tác và Zod kiểm tra boundary phía client.", "email": "Email", "invalidEmail": "Hãy nhập địa chỉ email hợp lệ", "validate": "Kiểm tra" },
-    "dnd": {
-      "title": "Nền tảng sắp xếp có accessibility",
-      "description": "Kéo bằng tay cầm, hoặc focus tay cầm rồi dùng Space/Enter và các phím mũi tên.",
+    "buttons": {
+      "title": "Hệ thống button Meago",
+      "description": "Toàn bộ variant, kích thước và trạng thái để kiểm tra theme trực quan.",
+      "variants": "Variants",
+      "sizes": "Kích thước",
+      "states": "Trạng thái",
+      "default": "Default",
+      "solid": "Solid",
+      "outlinePrimary": "Outline primary",
+      "secondary": "Secondary",
+      "outline": "Outline",
+      "ghost": "Ghost",
+      "destructive": "Destructive",
+      "link": "Link",
+      "settings": "Cài đặt",
+      "disabled": "Disabled",
+      "loading": "Đang tải",
+      "solidDisabled": "Solid disabled",
+      "outlineDisabled": "Outline disabled"
+    },
+    "avatars": {
+      "title": "Bảng màu avatar tự sinh",
+      "description": "Ký tự viết tắt và màu sắc được sinh ổn định từ tên hiển thị. Cùng một tên luôn cho ra cùng một avatar."
+    },
+    "controls": {
+      "title": "Hệ thống input và phân trang",
+      "description": "Các control nền tảng cho văn bản, số, ngày giờ, nội dung nhiều dòng và điều hướng phân trang.",
+      "text": { "label": "Văn bản", "placeholder": "Nhập tiêu đề" },
+      "number": { "label": "Số" },
+      "password": { "label": "Mật khẩu", "placeholder": "Nhập mật khẩu an toàn" },
+      "search": { "label": "Tìm kiếm", "placeholder": "Tìm kiếm nội dung", "action": "Tìm" },
+      "select": {
+        "single": "Chọn một có tìm kiếm",
+        "multiple": "Chọn nhiều",
+        "placeholder": "Chọn trạng thái",
+        "options": { "draft": "Bản nháp", "review": "Đang duyệt", "published": "Đã xuất bản", "archived": "Đã lưu trữ" }
+      },
+      "textarea": { "label": "Nội dung nhiều dòng", "placeholder": "Nhập mô tả dài hơn" },
+      "date": { "label": "Ngày" },
+      "time": { "label": "Thời gian" },
+      "dateTime": {
+        "label": "Ngày và giờ địa phương",
+        "hint": "datetime-local không chứa múi giờ. Hãy chuyển sang biểu diễn UTC/ISO đã thống nhất tại application boundary trước khi gửi API."
+      },
+      "dateRange": { "label": "Khoảng ngày" },
+      "dateTimeRange": {
+        "label": "Khoảng ngày và giờ",
+        "hint": "Khoảng thời gian giữ giá trị calendar có cấu trúc cho đến khi application boundary chuyển đổi để gửi API."
+      },
+      "timeRange": {
+        "label": "Khoảng thời gian",
+        "hint": "AntD giữ range đúng thứ tự và xác nhận trực tiếp trong panel chọn giờ."
+      },
+      "picker": {
+        "today": "Hôm nay",
+        "nextSevenDays": "7 ngày tới",
+        "thisMonth": "Tháng này"
+      },
+      "pagination": {
+        "title": "Phân trang",
+        "current": "Trang hiện tại: {page}",
+        "navigation": "Điều hướng phân trang",
+        "previous": "Trước",
+        "next": "Sau",
+        "page": "Đi đến trang {page}",
+        "more": "Còn trang khác"
+      }
+    },
+    "dataDemo": {
+      "title": "Nền tảng dữ liệu và danh sách lớn",
+      "description": "TanStack Table render dữ liệu có type; TanStack Virtual chỉ render các hàng đang nhìn thấy.",
+      "statuses": { "draft": "Bản nháp", "review": "Đang duyệt", "published": "Đã xuất bản" },
+      "table": {
+        "title": "Bảng dữ liệu",
+        "description": "Column và row ID do feature sở hữu.",
+        "empty": "Không có dữ liệu",
+        "columns": { "title": "Truyện", "status": "Trạng thái", "chapters": "Số chương" }
+      },
+      "virtual": {
+        "title": "Danh sách ảo hóa 120 hàng",
+        "description": "Cuộn để kiểm tra DOM virtualization.",
+        "item": "Hoạt động số {position}"
+      },
+      "infinite": {
+        "title": "Cursor infinite loading",
+        "description": "Intersection Observer tự tải page kế tiếp; nút vẫn là fallback có thể thao tác.",
+        "item": "Mục nội dung số {position}",
+        "loading": "Đang tải page tiếp theo...",
+        "loadMore": "Tải thêm",
+        "complete": "Đã tải hết dữ liệu demo"
+      }
+    },
+    "feedback": {
+      "title": "Skeleton và toast feedback",
+      "description": "Skeleton giữ bố cục trong lúc tải; Sonner thông báo kết quả ngắn hạn và trạng thái promise.",
+      "toast": {
+        "title": "Toast toàn cục",
+        "success": "Thao tác đã hoàn tất thành công",
+        "info": "Đây là thông báo cung cấp thêm thông tin",
+        "error": "Không thể hoàn tất thao tác demo",
+        "successAction": "Success",
+        "infoAction": "Info",
+        "errorAction": "Error"
+      },
+      "promise": { "action": "Promise toast", "loading": "Đang xử lý...", "result": "Xử lý promise thành công", "error": "Promise thất bại" },
+      "skeleton": { "title": "Skeleton giữ đúng hình dạng nội dung" }
+    },
+    "board": {
+      "title": "Bảng công việc kéo thả 4 cột",
+      "description": "Sắp xếp trong cùng cột hoặc chuyển item qua cột khác bằng chuột, cảm ứng hay bàn phím.",
       "move": "Di chuyển {item}",
-      "moved": "Đã chuyển {item} đến vị trí {position}",
-      "items": { "upload": "Tải lên", "process": "Xử lý", "publish": "Xuất bản" }
+      "moved": "Đã chuyển {item} đến {column}, vị trí {position}",
+      "columns": { "backlog": "Ý tưởng", "ready": "Sẵn sàng", "doing": "Đang làm", "done": "Hoàn thành" },
+      "items": { "outline": "Viết dàn ý", "cover": "Thiết kế ảnh bìa", "record": "Thu âm chương", "review": "Kiểm duyệt nội dung", "publish": "Xuất bản tập" },
+      "density": { "compact": "Chuyển sang chế độ thu gọn", "comfortable": "Chuyển sang chế độ thoải mái" }
+    },
+    "tour": {
+      "locale": { "title": "Đổi ngôn ngữ", "description": "Routing locale giữ nguyên trang hiện tại khi chuyển Việt/Anh." },
+      "form": { "title": "Form và command", "description": "Kiểm tra validation, server-error boundary và Command Palette." },
+      "data": { "title": "Table và virtualization", "description": "Hai capability có trách nhiệm riêng: mô hình bảng và tối ưu số node DOM." },
+      "feedback": { "title": "Skeleton và toast", "description": "Kiểm tra loading placeholder và notification toàn cục success/info/error/promise." },
+      "infinite": { "title": "Infinite loading", "description": "Cursor query kết hợp Intersection Observer, không dùng offset lớn." },
+      "board": { "title": "Multi-column DnD", "description": "Kéo trong cột, qua cột, touch và keyboard đều dùng cùng foundation." }
     }
   }
 }

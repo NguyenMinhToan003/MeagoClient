@@ -11,6 +11,7 @@ import { useRouter } from "@/i18n/navigation";
 import { authService } from "@/services/auth.service";
 import { useAuthStore } from "@/stores/auth.store";
 import { AUTH_EXPIRED_EVENT } from "@/libs/axios/axios-client";
+import { Toaster } from "@/components/ui/sonner";
 
 /** Khi mount (hoặc F5): thử dùng refresh cookie lấy access token mới. */
 function AuthBootstrap() {
@@ -59,6 +60,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       <AuthBootstrap />
       <AuthExpiredListener />
       {children}
+      <Toaster />
       {process.env.NODE_ENV === "development" ? (
         <ReactQueryDevtools initialIsOpen={false} />
       ) : null}

@@ -3,7 +3,10 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 
 import { GlobalCommandPalette } from '@/components/shared/global-command-palette';
+import { AppShell } from '@/components/shared/app-shell';
 import { AppProvider } from '@/providers/app-provider';
+import { AntdProvider } from '@/providers/antd-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
 
@@ -27,13 +30,17 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider>
-          <AppProvider>
-            <GlobalCommandPalette />
-            {children}
-          </AppProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <AntdProvider locale={locale}>
+              <AppProvider>
+                <GlobalCommandPalette />
+                <AppShell>{children}</AppShell>
+              </AppProvider>
+            </AntdProvider>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
