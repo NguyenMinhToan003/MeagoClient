@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { LogOut } from 'lucide-react';
+import { ChevronRight, LogIn, LogOut, Settings, UserRound } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Skeleton } from '@/components/ui/skeleton';
-import { authService } from '@/services/auth.service';
+import { useLogout, useMe } from '@/hooks/use-auth';
+import { Link, useRouter } from '@/i18n/navigation';
 import { useAuthStore } from '@/stores/auth.store';
 
 interface UserAvatarProps {
@@ -27,6 +28,8 @@ interface NameAvatarProps extends UserAvatarProps {
 }
 
 const FALLBACK_NAME = 'Meago';
+const GUEST_NAME = 'Guest';
+const AUTHENTICATED_FALLBACK_NAME = 'Meago User';
 
 const avatarColorClasses = [
   'bg-teal-100 text-teal-800 dark:bg-teal-900/65 dark:text-teal-100',
@@ -78,7 +81,9 @@ export function NameAvatar({ className, displayName, imageUrl }: NameAvatarProps
 export function UserAvatar({ displayName, imageUrl }: UserAvatarProps) {
   const isReady = useAuthStore((state) => state.isReady);
   const accessToken = useAuthStore((state) => state.accessToken);
-  const clearAuth = useAuthStore((state) => state.clear);
+  const currentUser = useMe();
+  const logout = useLogout();
+  const router = useRouter();
   const t = useTranslations('SidebarNavigation');
   if (!isReady) {
     return (
@@ -88,35 +93,63 @@ export function UserAvatar({ displayName, imageUrl }: UserAvatarProps) {
     );
   }
 
-  const logout = async () => {
+  // Identity data is locale-independent: preserve BE values and keep one stable guest identity.
+  const resolvedName = displayName || currentUser.data?.displayName || (accessToken ? AUTHENTICATED_FALLBACK_NAME : GUEST_NAME);
+  const resolvedEmail = currentUser.data?.email;
+
+  async function handleLogout() {
     try {
-      await authService.logout();
+      await logout.mutateAsync();
     } finally {
-      clearAuth();
+      router.replace('/login');
     }
-  };
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button type="button" variant="ghost" size="icon-lg" aria-label={t('account')} className="rounded-full">
-          <NameAvatar className="size-9" displayName={displayName} imageUrl={imageUrl} />
+          <NameAvatar className="size-9" displayName={resolvedName} imageUrl={imageUrl} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel className="flex items-center gap-3 py-2 font-normal">
-          <NameAvatar className="size-10" displayName={displayName} imageUrl={imageUrl} />
-          <span className="min-w-0">
-            <span className="block truncate text-sm font-medium">{displayName || t('guest')}</span>
-            <span className="text-muted-foreground block truncate text-xs">{accessToken ? t('signedIn') : t('notSignedIn')}</span>
+      <DropdownMenuContent align="end" sideOffset={8} className="w-72 rounded-xl p-1.5 shadow-lg">
+        <DropdownMenuLabel className="flex items-center gap-3 rounded-lg px-2.5 py-3 font-normal">
+          <NameAvatar className="size-11" displayName={resolvedName} imageUrl={imageUrl} />
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-semibold" title={resolvedName}>{resolvedName}</span>
+            <span className="text-muted-foreground block truncate text-xs" title={resolvedEmail}>{resolvedEmail || t('notSignedIn')}</span>
+            {accessToken ? (
+              <span className="mt-1 flex items-center gap-1.5 text-[11px] text-brand-foreground">
+                <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />{t('signedIn')}
+              </span>
+            ) : null}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive" disabled={!accessToken} onSelect={() => void logout()}>
-          <LogOut />
-          {t('logout')}
-        </DropdownMenuItem>
+        {accessToken ? (
+          <>
+            <DropdownMenuLabel className="px-2.5 pb-1 pt-1.5 text-xs font-medium text-muted-foreground">{t('accountSection')}</DropdownMenuLabel>
+            <DropdownMenuItem className="h-10 rounded-md px-2.5" disabled>
+              <UserRound /><span>{t('profile')}</span><MenuStatus>{t('comingSoon')}</MenuStatus>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="h-10 rounded-md px-2.5" disabled>
+              <Settings /><span>{t('settings')}</span><MenuStatus>{t('comingSoon')}</MenuStatus>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem variant="destructive" className="h-10 rounded-md px-2.5" disabled={logout.isPending} onSelect={() => void handleLogout()}>
+              <LogOut /><span>{logout.isPending ? t('loggingOut') : t('logout')}</span>
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <DropdownMenuItem asChild className="h-10 rounded-md px-2.5 text-brand-foreground focus:text-brand-foreground">
+            <Link href="/login"><LogIn /><span>{t('login')}</span><ChevronRight className="ml-auto" /></Link>
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
+}
+
+function MenuStatus({ children }: { children: React.ReactNode }) {
+  return <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">{children}</span>;
 }

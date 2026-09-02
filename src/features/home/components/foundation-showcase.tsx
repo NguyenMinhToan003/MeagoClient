@@ -38,15 +38,15 @@ export function FoundationShowcase() {
   };
 
   return (
-    <main id="overview" className="min-h-svh scroll-mt-16 bg-muted/30 px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
-        <header className="space-y-4">
+    <main id="overview" className="min-h-svh scroll-mt-14 bg-muted/30 px-3 py-8 sm:px-5 lg:px-6 lg:py-9">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
+        <header className="space-y-3">
           <div className="flex items-center justify-between gap-4">
             <Badge variant="secondary">{t('badge')}</Badge><div data-tour="locale"><LocaleSwitcher /></div>
           </div>
           <div className="max-w-2xl space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{t('title')}</h1>
-            <p className="text-muted-foreground text-base sm:text-lg">{t('description')}</p>
+            <h1 className="text-3xl font-semibold tracking-tight">{t('title')}</h1>
+            <p className="text-muted-foreground text-base">{t('description')}</p>
           </div>
         </header>
         <Separator />

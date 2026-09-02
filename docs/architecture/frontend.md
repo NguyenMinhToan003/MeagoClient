@@ -10,7 +10,7 @@ Quy ước sơ đồ: mũi tên liền là dependency/runtime call đang tồn t
 
 ```text
 src/
-├─ app/                  # Next.js App Router, layout và page
+├─ app/                  # Next.js App Router, locale providers và route groups
 ├─ components/
 │  ├─ ui/               # shadcn primitives; code thuộc repository
 │  ├─ shared/           # Composition dùng chung: DataTable, VirtualList, command palette
@@ -29,6 +29,50 @@ src/
 ├─ services/            # API theo use case/domain; không chứa UI state
 └─ stores/              # Zustand client state; access token chỉ nằm trong memory
 ```
+
+### Route groups và shell
+
+```text
+src/app/[locale]/
+├─ layout.tsx            # Locale, theme, AntD, Query và auth bootstrap providers
+├─ loading.tsx           # Suspense fallback thương hiệu cho route transition
+├─ (app)/
+│  ├─ layout.tsx         # AppShell + GlobalCommandPalette
+│  └─ page.tsx           # URL /{locale}
+└─ (auth)/
+   ├─ layout.tsx         # GuestGuard + AuthShell, không render sidebar/topbar
+   ├─ login/page.tsx     # URL /{locale}/login
+   └─ register/page.tsx  # URL /{locale}/register
+```
+
+Route group chỉ tổ chức layout và không xuất hiện trong URL. Trang guest chờ `AuthBootstrap`
+hoàn tất trước khi render; nếu refresh credential còn hiệu lực, `GuestGuard` đưa người dùng về
+ứng dụng. Form xác thực đi theo đúng hướng `component -> use-auth hook -> auth service -> Axios`.
+Đăng ký không tự đăng nhập vì response đăng ký hiện không cấp token; sau thành công người dùng
+được đưa về trang đăng nhập.
+
+### Chính sách loading toàn trang
+
+`BrandLoadingScreen` là fallback server-safe dùng chung cho hai trạng thái khác nhau:
+
+- `app/[locale]/loading.tsx` do Next.js App Router điều khiển, chỉ xuất hiện khi route segment
+  thực sự đang stream/render. Không tạo timer hoặc state điều hướng thủ công.
+- `AppStartupBoundary` chỉ chờ `AuthBootstrap` hoàn tất refresh credential lần đầu khi tải lại
+  website, nhờ đó không hiển thị nhầm UI khách trước khi biết trạng thái phiên.
+
+Loading của query/component vẫn dùng skeleton sát hình dạng nội dung tại feature tương ứng; không
+dùng overlay toàn màn hình cho refetch nền. Loader thương hiệu dùng CSS animation và tắt chuyển
+động qua `prefers-reduced-motion`.
+
+`AppProvider` tạo QueryClient riêng cho từng server request nhưng tái sử dụng một browser instance
+trong suốt vòng đời tab. Quy tắc này giữ cache server-state khi `[locale]` layout remount do đổi
+ngôn ngữ; query key không chứa locale nếu payload API độc lập ngôn ngữ. Chỉ chuỗi trình bày được
+dịch lại. `AuthBootstrap` cũng bỏ qua refresh nếu store đã `isReady`, tránh rotate credential chỉ
+vì người dùng đổi locale.
+
+Dữ liệu định danh và domain (`displayName`, email, ID, nội dung từ API) phải được giữ nguyên khi
+đổi locale; chỉ UI label đi qua `next-intl`. Fallback identity chưa đăng nhập luôn là `Guest` để
+initial, màu avatar và tên hiển thị ổn định giữa mọi ngôn ngữ.
 
 ## Hướng phụ thuộc
 

@@ -20,7 +20,7 @@ export function LocaleSwitcher() {
       size="sm"
       className="h-9"
       aria-label={t('language')}
-      onClick={() => router.replace(pathname, { locale: nextLocale })}
+      onClick={() => router.replace(pathname, { locale: nextLocale, scroll: false })}
     >
       <Languages aria-hidden="true" />
       {nextLocale.toUpperCase()}

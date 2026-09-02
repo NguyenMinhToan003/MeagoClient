@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { authService, ILoginPayload } from "@/services/auth.service";
+import { authService, ILoginPayload, IRegisterPayload } from "@/services/auth.service";
 import { useAuthStore } from "@/stores/auth.store";
 import { REACT_QUERY_KEY } from "@/constants/react-query-key";
 import { broadcastAuthCleared } from "@/libs/axios/axios-client";
@@ -17,6 +17,12 @@ export function useLogin() {
         queryKey: [REACT_QUERY_KEY.AUTH.ME],
       });
     },
+  });
+}
+
+export function useRegister() {
+  return useMutation({
+    mutationFn: (payload: IRegisterPayload) => authService.register(payload),
   });
 }
 

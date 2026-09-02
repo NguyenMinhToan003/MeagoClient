@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
 const SIDEBAR_COLLAPSED_STORAGE_KEY = 'meago.sidebar.collapsed';
@@ -223,9 +224,16 @@ export function AppSidebar() {
         collapsed ? 'w-16' : 'w-64',
       )}
     >
-      <div className={cn('flex h-16 items-center gap-2 border-b px-4', collapsed && 'justify-center px-2')}>
-        <MeagoLogo aria-hidden="true" className="h-8 w-10 shrink-0" />
-        {!collapsed && <span className="leading-none text-lg font-semibold tracking-tight">Meago</span>}
+      <div className={cn('flex h-14 items-center gap-2 border-b px-3', collapsed && 'justify-center px-2')}>
+        <Link
+          href="/"
+          aria-label={t('overview')}
+          title={collapsed ? t('overview') : undefined}
+          className="flex min-w-0 items-center gap-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+        >
+          <MeagoLogo aria-hidden="true" className="h-7 w-9 shrink-0" />
+          {!collapsed && <span className="leading-none text-base font-semibold tracking-tight">Meago</span>}
+        </Link>
       </div>
       <NavigationContent
         collapsed={collapsed}
@@ -263,9 +271,16 @@ export function MobileAppNavigation() {
           showCloseButton
           className="top-0 left-0 h-svh max-w-72 translate-x-0 translate-y-0 content-start rounded-none border-y-0 border-l-0 p-0"
         >
-          <div className="flex h-16 items-center gap-2 border-b px-4">
-            <MeagoLogo aria-hidden="true" className="h-8 w-10 shrink-0" />
-            <DialogTitle className="leading-none">Meago</DialogTitle>
+          <div className="flex h-14 items-center gap-2 border-b px-3">
+            <Link
+              href="/"
+              aria-label={t('overview')}
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+            >
+              <MeagoLogo aria-hidden="true" className="h-7 w-9 shrink-0" />
+              <DialogTitle className="leading-none">Meago</DialogTitle>
+            </Link>
             <DialogDescription className="sr-only">{t('description')}</DialogDescription>
           </div>
           <NavigationContent activeSection={activeSection} onNavigate={() => setOpen(false)} />

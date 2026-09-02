@@ -1,4 +1,61 @@
 {
+  "Auth": {
+    "shell": {
+      "eyebrow": "Được tạo cho trải nghiệm nghe tập trung",
+      "title": "Mọi câu chuyện trong một không gian nhẹ nhàng.",
+      "description": "Đăng nhập để tiếp tục hành trình nghe, quản lý thư viện và đồng bộ trải nghiệm trên mọi thiết bị.",
+      "audioTitle": "Trải nghiệm liền mạch",
+      "audioDescription": "Tiếp tục chính xác vị trí đang nghe trên mọi thiết bị.",
+      "secureTitle": "An toàn từ thiết kế",
+      "secureDescription": "Access token ngắn hạn và refresh credential được bảo vệ giúp phiên an toàn hơn.",
+      "footer": "Meago · Audio và câu chuyện không gián đoạn"
+    },
+    "fields": {
+      "displayName": "Tên hiển thị",
+      "displayNamePlaceholder": "Meago nên gọi bạn là gì?",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu",
+      "newPasswordPlaceholder": "Tối thiểu 8 ký tự",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "confirmPasswordPlaceholder": "Nhập lại mật khẩu"
+    },
+    "login": {
+      "title": "Chào mừng trở lại",
+      "description": "Nhập thông tin tài khoản để tiếp tục sử dụng Meago.",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập...",
+      "noAccount": "Bạn chưa có tài khoản?",
+      "register": "Tạo tài khoản"
+    },
+    "register": {
+      "title": "Tạo tài khoản",
+      "description": "Thiết lập danh tính Meago của bạn chỉ trong ít phút.",
+      "submit": "Tạo tài khoản",
+      "submitting": "Đang tạo tài khoản...",
+      "hasAccount": "Bạn đã có tài khoản?",
+      "login": "Đăng nhập",
+      "success": "Đã tạo tài khoản. Bạn có thể đăng nhập ngay."
+    },
+    "validation": {
+      "displayNameRequired": "Hãy nhập tên hiển thị",
+      "displayNameTooLong": "Tên hiển thị không được vượt quá 100 ký tự",
+      "email": "Hãy nhập địa chỉ email hợp lệ",
+      "emailTooLong": "Email không được vượt quá 254 ký tự",
+      "passwordRequired": "Hãy nhập mật khẩu",
+      "passwordMin": "Mật khẩu phải có ít nhất 8 ký tự",
+      "passwordTooLong": "Mật khẩu không được vượt quá 128 ký tự",
+      "confirmPasswordRequired": "Hãy xác nhận mật khẩu",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp"
+    },
+    "errors": {
+      "invalidCredentials": "Email hoặc mật khẩu không chính xác.",
+      "conflict": "Email này đã được dùng để tạo tài khoản.",
+      "rateLimited": "Bạn thao tác quá nhiều lần. Hãy đợi một chút rồi thử lại.",
+      "serverUnavailable": "Không thể kết nối máy chủ. Hãy kiểm tra dịch vụ rồi thử lại.",
+      "unknown": "Không thể hoàn tất yêu cầu. Vui lòng thử lại."
+    }
+  },
   "SidebarNavigation": {
     "label": "Điều hướng chính",
     "description": "Mở menu điều hướng Meago",
@@ -11,6 +68,13 @@
     "signedIn": "Đã đăng nhập",
     "notSignedIn": "Chưa đăng nhập",
     "logout": "Đăng xuất",
+    "loggingOut": "Đang đăng xuất...",
+    "login": "Đăng nhập",
+    "userFallback": "Người dùng Meago",
+    "accountSection": "Tài khoản",
+    "profile": "Hồ sơ của bạn",
+    "settings": "Cài đặt tài khoản",
+    "comingSoon": "Sắp có",
     "open": "Mở menu",
     "collapse": "Thu gọn thanh điều hướng",
     "expand": "Mở rộng thanh điều hướng",

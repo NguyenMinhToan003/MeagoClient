@@ -96,6 +96,18 @@
 }
 
 @layer components {
+  .meago-loader-mark {
+    animation: meago-loader-breathe 1.8s ease-in-out infinite;
+  }
+
+  .meago-loader-orbit {
+    animation: meago-loader-spin 1.15s linear infinite;
+  }
+
+  .meago-loader-bar {
+    animation: meago-loader-slide 1.25s ease-in-out infinite;
+  }
+
   .meago-antd-picker.ant-picker {
     box-shadow: none;
     font-family: inherit;
@@ -151,5 +163,28 @@
   .ant-picker-dropdown .ant-picker-ok button {
     box-shadow: none;
     font-weight: 600;
+  }
+}
+
+@keyframes meago-loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes meago-loader-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+@keyframes meago-loader-slide {
+  0% { transform: translateX(-115%); }
+  50% { transform: translateX(75%); }
+  100% { transform: translateX(250%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meago-loader-mark,
+  .meago-loader-orbit,
+  .meago-loader-bar {
+    animation: none;
   }
 }

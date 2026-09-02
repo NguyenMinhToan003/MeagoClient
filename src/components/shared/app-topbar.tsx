@@ -15,7 +15,7 @@ export function AppTopbar() {
   const t = useTranslations('SidebarNavigation');
 
   return (
-    <header className="bg-background/95 sticky top-0 z-40 flex h-16 items-center gap-3 border-b px-4 backdrop-blur sm:px-6">
+    <header className="bg-background/95 sticky top-0 z-40 flex h-14 items-center gap-2.5 border-b px-3 backdrop-blur sm:px-4">
       <MobileAppNavigation />
       <Button
         type="button"

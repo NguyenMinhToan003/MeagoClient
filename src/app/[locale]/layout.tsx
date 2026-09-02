@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 
-import { GlobalCommandPalette } from '@/components/shared/global-command-palette';
-import { AppShell } from '@/components/shared/app-shell';
 import { AppProvider } from '@/providers/app-provider';
 import { AntdProvider } from '@/providers/antd-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
@@ -36,8 +34,7 @@ export default async function LocaleLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AntdProvider locale={locale}>
               <AppProvider>
-                <GlobalCommandPalette />
-                <AppShell>{children}</AppShell>
+                {children}
               </AppProvider>
             </AntdProvider>
           </ThemeProvider>

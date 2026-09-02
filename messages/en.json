@@ -1,4 +1,61 @@
 {
+  "Auth": {
+    "shell": {
+      "eyebrow": "Built for focused listening",
+      "title": "Your stories, organized in one calm space.",
+      "description": "Sign in to continue your listening journey, manage your library, and keep every device in sync.",
+      "audioTitle": "A seamless experience",
+      "audioDescription": "Continue exactly where you stopped across your devices.",
+      "secureTitle": "Secure by design",
+      "secureDescription": "Short-lived access and protected refresh credentials keep sessions safer.",
+      "footer": "Meago · Audio and stories without distraction"
+    },
+    "fields": {
+      "displayName": "Display name",
+      "displayNamePlaceholder": "How should we call you?",
+      "email": "Email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "newPasswordPlaceholder": "At least 8 characters",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter the password again"
+    },
+    "login": {
+      "title": "Welcome back",
+      "description": "Enter your account details to continue to Meago.",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "noAccount": "New to Meago?",
+      "register": "Create an account"
+    },
+    "register": {
+      "title": "Create your account",
+      "description": "Set up your Meago identity in just a moment.",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in",
+      "success": "Account created. You can sign in now."
+    },
+    "validation": {
+      "displayNameRequired": "Enter your display name",
+      "displayNameTooLong": "Display name must not exceed 100 characters",
+      "email": "Enter a valid email address",
+      "emailTooLong": "Email must not exceed 254 characters",
+      "passwordRequired": "Enter your password",
+      "passwordMin": "Password must contain at least 8 characters",
+      "passwordTooLong": "Password must not exceed 128 characters",
+      "confirmPasswordRequired": "Confirm your password",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "errors": {
+      "invalidCredentials": "Email or password is incorrect.",
+      "conflict": "An account already exists for this email.",
+      "rateLimited": "Too many attempts. Please wait a moment and try again.",
+      "serverUnavailable": "Cannot connect to the server. Please check the service and try again.",
+      "unknown": "The request could not be completed. Please try again."
+    }
+  },
   "SidebarNavigation": {
     "label": "Primary navigation",
     "description": "Open the Meago navigation menu",
@@ -11,6 +68,13 @@
     "signedIn": "Signed in",
     "notSignedIn": "Not signed in",
     "logout": "Sign out",
+    "loggingOut": "Signing out...",
+    "login": "Sign in",
+    "userFallback": "Meago user",
+    "accountSection": "Account",
+    "profile": "Your profile",
+    "settings": "Account settings",
+    "comingSoon": "Soon",
     "open": "Open menu",
     "collapse": "Collapse navigation",
     "expand": "Expand navigation",
